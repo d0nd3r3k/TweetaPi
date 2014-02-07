@@ -59,6 +59,7 @@ io.sockets.on('connection', function (socket) {
             'status': 'Posting a tweet w/ attached media from RaspiCam @conversionpoint',
             'media[]': image_dir+timestamp+".jpg"
         },function(error, result) {
+          console.log(image_dir+timestamp+".jpg")
           if (error){
             console.log('Error: ' + (error.code ? error.code + ' ' + error.message : error.message));
           }
