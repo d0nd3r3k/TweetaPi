@@ -44,7 +44,7 @@ io.sockets.on('connection', function (socket) {
   socket.on('shoot', function (data) {
     var timestamp = Number(new Date()); 	
   	console.log(data)
-  	child = exec("raspistill -o "+image_dir+timestamp+".jpg", function (error, stdout, stderr) {
+  	child = exec("raspistill -o "+image_dir+timestamp+".jpg -w 640 -h 480", function (error, stdout, stderr) {
   		socket.emit('preview', { name: timestamp+'.jpg' });
   	});
   });
