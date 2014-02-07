@@ -4,12 +4,16 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 
 var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io').listen(server);
+
+var sys = require('sys');
+var exec = require('child_process').exec;
+var child;
 
 // all environments
 app.set('port', process.env.PORT || 8080);
@@ -28,9 +32,22 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-app.get('/users', user.list);
+//Routing
+app.get('/', function (req, res) {
+  res.render('index', { title: 'PiCam' });
+});
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+//Socket Events
+io.sockets.on('connection', function (socket) {
+  socket.on('shoot', function (data) {
+    var timestamp = Number(new Date()); 	
+  	console.log(data)
+  	child = exec("raspistill -o "+timestamp+".jpg", function (error, stdout, stderr) {
+  		socket.emit('preview', { name: timestamp+'.jpg' });
+  	});
+  });
+});
+
+server.listen(app.get('port'), function(){
+  console.log('Express and Socket.io server listening on port ' + app.get('port'));
 });
