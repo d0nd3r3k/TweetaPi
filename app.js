@@ -14,6 +14,7 @@ var io = require('socket.io').listen(server);
 var sys = require('sys');
 var exec = require('child_process').exec;
 var child;
+var image_dir=path.join(__dirname, 'public/images/')
 
 // all environments
 app.set('port', process.env.PORT || 8080);
@@ -26,6 +27,7 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+io.set('log level', 1);
 
 // development only
 if ('development' == app.get('env')) {
@@ -42,7 +44,7 @@ io.sockets.on('connection', function (socket) {
   socket.on('shoot', function (data) {
     var timestamp = Number(new Date()); 	
   	console.log(data)
-  	child = exec("raspistill -o "+timestamp+".jpg", function (error, stdout, stderr) {
+  	child = exec("raspistill -o "+image_dir+timestamp+".jpg", function (error, stdout, stderr) {
   		socket.emit('preview', { name: timestamp+'.jpg' });
   	});
   });
