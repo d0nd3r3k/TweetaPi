@@ -58,7 +58,14 @@ io.sockets.on('connection', function (socket) {
       twitterRestClient.statusesUpdateWithMedia({
             'status': 'Posting a tweet w/ attached media from RaspiCam @conversionpoint',
             'media[]': image_dir+timestamp+".jpg"
-        },function(error, result) {});
+        },function(error, result) {
+          if (error){
+            console.log('Error: ' + (error.code ? error.code + ' ' + error.message : error.message));
+          }
+        if (result){
+            console.log(result);
+          }
+        });
       });
   	});
   });
