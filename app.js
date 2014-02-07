@@ -40,14 +40,14 @@ app.get('/', function (req, res) {
 });
 
 //Twitter API
-var Twitter = require('node-twitter');
-
-var twitterRestClient = new Twitter.RestClient(
-    'kt5owDkV89MmMnnWYUegA',
-    'UAYCYuHiQx6fKrNQ6ajgzsU6MOPdJa8HckKWRGEaE',
-    '54840439-Nh8q4bNADyItt6wpbq6JnnBmS2Sb5D1ngh6Mf1hyN',
-    'a6EBsjUjWpfWjZS3wxCEjgIBNGQEVJMgPYgOBZWhAyMhc'
-);
+var twitter_update_with_media = require('./twitter_update_with_media.js');
+ 
+var tuwm = new twitter_update_with_media({
+  consumer_key: 'kt5owDkV89MmMnnWYUegA',
+  consumer_secret: 'UAYCYuHiQx6fKrNQ6ajgzsU6MOPdJa8HckKWRGEaE',
+  token: '54840439-Nh8q4bNADyItt6wpbq6JnnBmS2Sb5D1ngh6Mf1hyN',
+  token_secret: 'a6EBsjUjWpfWjZS3wxCEjgIBNGQEVJMgPYgOBZWhAyMhc'
+});
 
 //Socket Events
 io.sockets.on('connection', function (socket) {
@@ -55,18 +55,13 @@ io.sockets.on('connection', function (socket) {
     var timestamp = Number(new Date()); 	
   	child = exec("raspistill -o "+image_dir+timestamp+".jpg -w 640 -h 480", function (error, stdout, stderr) {
   		socket.emit('preview', { name: timestamp+'.jpg' });
-      twitterRestClient.statusesUpdateWithMedia({
-            'status': 'Posting a tweet w/ attached media from RaspiCam @conversionpoint',
-            'media[]': image_dir+timestamp+".jpg"
-        },function(error, result) {
-          console.log(image_dir+timestamp+".jpg")
-          if (error){
-            console.log('Error: ' + (error.code ? error.code + ' ' + error.message : error.message));
-          }
-        if (result){
-            console.log(result);
-          }
-        });
+      image_path = image_dir+timestamp+".jpg";
+      tuwm.post('Hello, Pi', image_path, function(err, response) {
+        if (err) {
+          console.log(err);
+        }
+        console.log(response);
+          });
       });
   	});
   });

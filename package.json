@@ -9,6 +9,6 @@
     "express": "3.4.8",
     "jade": "*",
     "socket.io":"0.9.x",
-    "node-twitter":"*"
+    "request":"*"
   }
 }
