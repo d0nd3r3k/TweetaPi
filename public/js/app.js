@@ -3,7 +3,7 @@
 	var preview_path = "images/"
 	Zepto(function($){
 		$(".shoot").on('click',function(){
-			socket.emit('shoot', { tweet: 'Lorem Ipssum Dolor' });	
+			socket.emit('shoot', { tweet: $(".message").val() });	
 		});
 		
 		socket.on('preview', function (data) {

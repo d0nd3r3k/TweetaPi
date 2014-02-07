@@ -56,12 +56,13 @@ io.sockets.on('connection', function (socket) {
   	child = exec("raspistill -o "+image_dir+timestamp+".jpg -w 640 -h 480", function (error, stdout, stderr) {
   		socket.emit('preview', { name: timestamp+'.jpg' });
       image_path = image_dir+timestamp+".jpg";
-      tuwm.post('Hello, Pi', image_path, function(err, response) {
+      tuwm.post(data.tweet, image_path, function(err, response) {
         if (err) {
           console.log(err);
         }
         console.log(response);
-          });
+        });
+
       });
   	});
   });
