@@ -18,6 +18,9 @@ a {
 .hide{
 	display: none;
 }
+.show{
+	display: block;
+}
 .main{
 	padding: 10px;
 	text-align: center;
@@ -38,4 +41,56 @@ a {
 .instructions{
 	font-size: 0.7em;
 	margin:-20px 0 0 0;
+}
+.copy{
+	text-align: center;
+	font-size: 0.6em;
+}
+.loading {
+  border-radius:10px;
+  height:16px;
+  width:16px;
+  background:#ebedee;
+  position:absolute;
+  -webkit-animation: corner 1s ease infinite;
+  -moz-animation: corner 1s ease infinite;
+  -ms-animation: corner 1s ease infinite;
+  -o-animation: corner 1s ease infinite;
+  animation: corner 1s ease infinite;
+  top: 55%;
+  left:50%;
+  margin-left:-8px;
+  margin-top:-8px;
+  position: fixed;
+  top: 28px;
+}
+@-webkit-keyframes corner {
+
+  0% {background: #e74c3c;-webkit-transform: rotate(0deg);border-radius:10px;}
+  50% {background: #ebedee;-webkit-transform: rotate(180deg);border-radius:0;}
+  100% {background: #e74c3c;-webkit-transform: rotate(360deg);border-radius:10px;}
+}
+@-moz-keyframes corner {
+
+  0% {background: #e74c3c;-moz-transform: rotate(0deg);border-radius:10px;}
+  50% {background: #ebedee;-moz-transform: rotate(180deg);border-radius:0;}
+  100% {background: #e74c3c;-moz-transform: rotate(360deg);border-radius:10px;}
+}
+@-ms-keyframes corner {
+
+  0% {background: #e74c3c;-ms-transform: rotate(0deg);border-radius:10px;}
+  50% {background: #ebedee;-ms-transform: rotate(180deg);border-radius:0;}
+  100% {background: #e74c3c;-ms-transform: rotate(360deg);border-radius:10px;}
+}
+@-o-keyframes corner {
+
+  0% {background: #e74c3c;-o-transform: rotate(0deg);border-radius:10px;}
+  50% {background: #ebedee;-o-transform: rotate(180deg);border-radius:0;}
+  100% {background: #e74c3c;-o-transform: rotate(360deg);border-radius:10px;}
+}
+@keyframes corner {
+
+  0% {background: #e74c3c;transform: rotate(0deg);border-radius:10px;}
+  50% {background: #ebedee;transform: rotate(180deg);border-radius:0;}
+  100% {background: #e74c3c;transform: rotate(360deg);border-radius:10px;}
 }

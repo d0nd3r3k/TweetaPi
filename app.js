@@ -62,7 +62,7 @@ io.sockets.on('connection', function (socket) {
           if (err) {
             console.log(err);
           }
-          console.log(response);
+          socket.emit('done');
           });  
         })
       
