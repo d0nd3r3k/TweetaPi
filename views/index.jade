@@ -1,6 +1,17 @@
 extends layout
 
 block content
-  textarea.message
-  img.preview
-  button.shoot Shoot
+	.container
+		nav.navbar.navbar-default
+			.navbar-brand PiCam
+		ol.instructions
+			li tap in the square bellow to take a photo
+			li you can tap again in the square to re-take a photo
+			li your photo will be attached to the tweet
+		.row
+			.col-md-12.main
+				img.preview.img-responsive.shoot(src="")
+				textarea.message.form-control(placeholder="Enter Tweet here...")
+				button.btn.btn-hg.btn-primary.tweet.btn-block
+					span.fui-twitter
+					span   Tweet!

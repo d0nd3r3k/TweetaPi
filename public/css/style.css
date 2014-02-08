@@ -1,11 +1,41 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+body{
+	margin: 0;
+	padding: 0;
 }
-
 a {
   color: #00B7FF;
 }
+.navbar-default .navbar-brand {
+	color: white;
+}
+.navbar-default {
+	background-color: #000;
+	border-radius: 0;
+}
+.navbar-brand{
+	padding: 14px 21px 20px 21px;
+}
 .hide{
 	display: none;
+}
+.main{
+	padding: 10px;
+	text-align: center;
+}
+.main img{
+	min-height: 234px;
+	width: 90%;
+	border: 2px solid #ccc;
+	border-radius: 2px;
+}
+.message{
+	width: 90%;
+}
+.btn{
+	width: 100%;
+	background: #3498db;
+}
+.instructions{
+	font-size: 0.7em;
+	margin:-20px 0 0 0;
 }

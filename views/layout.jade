@@ -1,10 +1,18 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/css/style.css')
-    script(src="/socket.io/socket.io.js")
-    script(src="/js/zepto.min.js")
-    script(src="/js/app.js")
-  body
-    block content
+	head
+		title= title
+		meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+		meta(name="apple-mobile-web-app-title", content="PiCam Remote")
+		meta(name="apple-mobile-web-app-capable", content="yes")
+		link(rel='stylesheet', href='/bootsrap/css/bootstrap.css')
+		link(rel="apple-touch-icon",href="images/Camera@2x.png")
+		link(rel="apple-touch-startup-image" href="images/Camera@2x.png")
+		link(rel='stylesheet', href='/css/flat-ui.css')
+		link(rel='stylesheet', href='/css/style.css')
+		script(src="/socket.io/socket.io.js")
+		script(src="/js/zepto.min.js")
+		script(src="/js/app.js")
+		script(src="/js/fastclick.js")
+	body
+	block content

@@ -51,20 +51,24 @@ var tuwm = new twitter_update_with_media({
 
 //Socket Events
 io.sockets.on('connection', function (socket) {
+
   socket.on('shoot', function (data) {
     var timestamp = Number(new Date()); 	
   	child = exec("raspistill -o "+image_dir+timestamp+".jpg -w 640 -h 480", function (error, stdout, stderr) {
   		socket.emit('preview', { name: timestamp+'.jpg' });
       image_path = image_dir+timestamp+".jpg";
-      tuwm.post(data.tweet, image_path, function(err, response) {
-        if (err) {
-          console.log(err);
-        }
-        console.log(response);
-        });
-
+        socket.on('tweet', function(data){
+          tuwm.post(data.tweet, image_path, function(err, response) {
+          if (err) {
+            console.log(err);
+          }
+          console.log(response);
+          });  
+        })
+      
       });
   	});
+  
   });
 
 server.listen(app.get('port'), function(){
