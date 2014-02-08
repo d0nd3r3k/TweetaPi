@@ -7,7 +7,7 @@
 	Zepto(function($){
 		$(".tweet").on('click',function(){
 			$(".loading").toggle();
-			socket.emit('tweet', { tweet: $(".message").val() });	
+			socket.emit('tweet', { tweet: $(".message").val()+" @conversionpoint" });	
 		});
 		$(".shoot").on('click', function(){
 			$(".loading").toggle();
