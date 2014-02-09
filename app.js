@@ -62,6 +62,8 @@ io.sockets.on('connection', function (socket) {
      */
   	child = exec("raspistill -o "+ image_path +" -w 640 -h 480", function (err, stdout, stderr) {
       if(err) console.log(stderr);
+      else 
+        socket.emit('preview', {name: image_name});
     });
 
     //Tweet the image
