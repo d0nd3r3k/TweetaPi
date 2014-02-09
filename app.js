@@ -47,11 +47,13 @@ var tuwm = new twitter_update_with_media(config);
 
 //Socket Events
 io.sockets.on('connection', function (socket) {
-
+  var image_name;
+  var image_path = image_dir + image_name;
+  
   socket.on('shoot', function (data) {
 
-    var image_name = Number(new Date()) + ".jpg"; 	
-    var image_path = image_dir + image_name;
+    image_name = Number(new Date()) + ".jpg"; 	
+    image_path = image_dir + image_name;
     /*
      * @child 
      * @raspistill shell command
@@ -64,16 +66,15 @@ io.sockets.on('connection', function (socket) {
       else 
         socket.emit('preview', {name: image_name});
     });
+  });
 
-    //Tweet the image
+  //Tweet the image
     socket.on('tweet', function(data){
       tuwm.post(data.tweet, image_path, function(err, response) {
         if (err) console.log(err);
         socket.emit('done');
       });  
     });
-
-  });
 
 });
 
