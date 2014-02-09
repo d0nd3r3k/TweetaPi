@@ -52,7 +52,7 @@ io.sockets.on('connection', function (socket) {
 
     var image_name = Number(new Date()) + ".jpg"; 	
     var image_path = image_dir + image_name;
-    
+    console.log(image_path)
     /*
      * @child 
      * @raspistill shell command
@@ -60,16 +60,14 @@ io.sockets.on('connection', function (socket) {
      * @args -w image width
      * @args -h image height
      */
-  	child = exec("raspistill -o "+ image_path +" -w 640 -h 480", function (error, stdout, stderr) {
-  		socket.emit('preview', { name: image_name });
+  	child = exec("raspistill -o "+ image_path +" -w 640 -h 480", function (err, stdout, stderr) {
+      if(err) console.log(stderr);
     });
 
     //Tweet the image
     socket.on('tweet', function(data){
       tuwm.post(data.tweet, image_path, function(err, response) {
-        if (err) {
-          console.log(err);
-        }
+        if (err) console.log(err);
         socket.emit('done');
       });  
     });

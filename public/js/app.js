@@ -28,7 +28,7 @@
 
 		//Triggers
 		socket.on('preview', function (data) {
-			var preview.attr("src",preview_path+data.name);
+			preview.attr("src",preview_path+data.name);
 			loader.toggle();
 		});
 		socket.on('done', function(data){
@@ -37,6 +37,6 @@
 			preview.attr("src","");
 			message.val("");
 		})
-		
+
 	})
 })();
