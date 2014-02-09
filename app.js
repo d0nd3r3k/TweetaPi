@@ -52,7 +52,6 @@ io.sockets.on('connection', function (socket) {
 
     var image_name = Number(new Date()) + ".jpg"; 	
     var image_path = image_dir + image_name;
-    console.log(image_path)
     /*
      * @child 
      * @raspistill shell command

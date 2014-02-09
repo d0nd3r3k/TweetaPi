@@ -14,7 +14,7 @@
 		//Cache DOM elements for better performance 
 		var loader = $(".loading");
 		var message = $(".message");
-		var preview = $("preview");
+		var preview = $(".preview");
 
 		//Event emitters
 		$(".tweet").on('click',function(){
