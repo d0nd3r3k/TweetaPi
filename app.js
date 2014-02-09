@@ -15,6 +15,7 @@ var sys = require('sys');
 var exec = require('child_process').exec;
 var child;
 var image_dir=path.join(__dirname, 'public/images/')
+var config = require('./config.js')
 
 // all environments
 app.set('port', process.env.PORT || 8080);
@@ -42,34 +43,40 @@ app.get('/', function (req, res) {
 //Twitter API
 var twitter_update_with_media = require('./twitter_update_with_media.js');
  
-var tuwm = new twitter_update_with_media({
-  consumer_key: 'APP_COSUMER_KEY',
-  consumer_secret: 'APP_CONSUMER_SECRET',
-  token: 'APP_TOKEN',
-  token_secret: 'APP_TOKEN_SECRET'
-});
+var tuwm = new twitter_update_with_media(config);
 
 //Socket Events
 io.sockets.on('connection', function (socket) {
 
   socket.on('shoot', function (data) {
-    var timestamp = Number(new Date()); 	
-  	child = exec("raspistill -o "+image_dir+timestamp+".jpg -w 640 -h 480", function (error, stdout, stderr) {
-  		socket.emit('preview', { name: timestamp+'.jpg' });
-      image_path = image_dir+timestamp+".jpg";
-        socket.on('tweet', function(data){
-          tuwm.post(data.tweet, image_path, function(err, response) {
-          if (err) {
-            console.log(err);
-          }
-          socket.emit('done');
-          });  
-        })
-      
-      });
-  	});
-  
+
+    var image_name = Number(new Date()) + ".jpg"; 	
+    var image_path = image_dir + image_name;
+    
+    /*
+     * @child 
+     * @raspistill shell command
+     * @args -o image_path
+     * @args -w image width
+     * @args -h image height
+     */
+  	child = exec("raspistill -o "+ image_path +" -w 640 -h 480", function (error, stdout, stderr) {
+  		socket.emit('preview', { name: image_name });
+    });
+
+    //Tweet the image
+    socket.on('tweet', function(data){
+      tuwm.post(data.tweet, image_path, function(err, response) {
+        if (err) {
+          console.log(err);
+        }
+        socket.emit('done');
+      });  
+    });
+
   });
+
+});
 
 server.listen(app.get('port'), function(){
   console.log('Express and Socket.io server listening on port ' + app.get('port'));

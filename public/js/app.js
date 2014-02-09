@@ -16,26 +16,27 @@
 		var message = $(".message");
 		var preview = $("preview");
 
+		//Event emitters
 		$(".tweet").on('click',function(){
 			loader.toggle();
 			socket.emit('tweet', { tweet: message.val() });	
 		});
-
 		$(".shoot").on('click', function(){
 			loader.toggle();
 			socket.emit('shoot');
 		})
 
+		//Triggers
 		socket.on('preview', function (data) {
 			var preview.attr("src",preview_path+data.name);
 			loader.toggle();
 		});
-
 		socket.on('done', function(data){
 			loader.toggle();
 			alert("Tweet Sent!");
 			preview.attr("src","");
 			message.val("");
 		})
+		
 	})
 })();
