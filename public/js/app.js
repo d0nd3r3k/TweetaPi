@@ -1,27 +1,41 @@
 (function () {
+	//Eliminiate the 300ms delay on click events on mobile browsers (Android/iOS)
 	window.addEventListener('load', function() {
     FastClick.attach(document.body);
 	}, false);
+
+	//Connection to socket.io
 	var socket = io.connect('http://' + window.location.host);
 	var preview_path = "images/"
+	
+	//Init when Zepto.js is loaded
 	Zepto(function($){
+
+		//Cache DOM elements for better performance 
+		var loader = $(".loading");
+		var message = $(".message");
+		var preview = $("preview");
+
 		$(".tweet").on('click',function(){
-			$(".loading").toggle();
-			socket.emit('tweet', { tweet: $(".message").val()+" @conversionpoint" });	
+			loader.toggle();
+			socket.emit('tweet', { tweet: message.val() });	
 		});
+
 		$(".shoot").on('click', function(){
-			$(".loading").toggle();
+			loader.toggle();
 			socket.emit('shoot');
 		})
+
 		socket.on('preview', function (data) {
-			var preview = document.getElementsByClassName("preview")[0].src=preview_path+data.name;
-			$(".loading").toggle();
+			var preview.attr("src",preview_path+data.name);
+			loader.toggle();
 		});
+
 		socket.on('done', function(data){
-			$(".loading").toggle();
+			loader.toggle();
 			alert("Tweet Sent!");
-			var preview = document.getElementsByClassName("preview")[0].src="";
-			$(".message").val("");
+			preview.attr("src","");
+			message.val("");
 		})
 	})
 })();

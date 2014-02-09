@@ -1,6 +1,6 @@
 
 /**
- * Module dependencies.
+ * Module dependecies
  */
 
 var express = require('express');
@@ -43,10 +43,10 @@ app.get('/', function (req, res) {
 var twitter_update_with_media = require('./twitter_update_with_media.js');
  
 var tuwm = new twitter_update_with_media({
-  consumer_key: 'kt5owDkV89MmMnnWYUegA',
-  consumer_secret: 'UAYCYuHiQx6fKrNQ6ajgzsU6MOPdJa8HckKWRGEaE',
-  token: '54840439-Nh8q4bNADyItt6wpbq6JnnBmS2Sb5D1ngh6Mf1hyN',
-  token_secret: 'a6EBsjUjWpfWjZS3wxCEjgIBNGQEVJMgPYgOBZWhAyMhc'
+  consumer_key: 'APP_COSUMER_KEY',
+  consumer_secret: 'APP_CONSUMER_SECRET',
+  token: 'APP_TOKEN',
+  token_secret: 'APP_TOKEN_SECRET'
 });
 
 //Socket Events
