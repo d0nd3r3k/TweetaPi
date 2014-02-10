@@ -2,13 +2,14 @@
 
 Tweet images from a RaspberryPi (model-B) from a web mobile application (iOS/Android). The application core is built with Node.js Express Framework and socket.io. 
 
+
 ### Installation
 ```
 	npm install tweetapi
 ```
 
 ### Configuration
-Make sure to create a Twitter App by visiting [dev.twitter.com](https://dev.twitter.com/) 
+Make sure to create a Twitter App by visiting [dev.twitter.com](https://dev.twitter.com/).
 After generating your access token, make sure to edit the config.js file with your credentials
 ```
   consumer_key: 'APP_KEY',
@@ -17,9 +18,9 @@ After generating your access token, make sure to edit the config.js file with yo
   token_secret: 'APP_ACCESS_TOKEN_SECRET'
 ```
 
-#Contributors
-[Kifah Daher](https://github.com/KifahDaher)
-[Donald Derek](https://github.com/DonaldDerek)
+###Contributors
+. [Kifah Daher](https://github.com/KifahDaher)
+. [Donald Derek](https://github.com/DonaldDerek)
 
 ### License
 (The MIT License)
