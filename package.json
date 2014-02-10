@@ -1,6 +1,6 @@
 {
   "name": "tweetapi",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description":"Tweet images from the RaspberryPi via a mobile interface",
   "author": {
     "name": "Donald Derek",
