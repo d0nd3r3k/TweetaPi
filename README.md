@@ -2,7 +2,7 @@
 
 Tweet images from a RaspberryPi (model-B) from a web mobile application (iOS/Android). The application core is built with Node.js Express Framework and socket.io. 
 
-# UI-Preview
+### UI-Preview
 ![Tweetapi UI Preview](https://raw2.github.com/DonaldDerek/TweetaPi/master/public/images/prev.png)
 
 ### Installation
