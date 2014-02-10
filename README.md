@@ -19,8 +19,8 @@ After generating your access token, make sure to edit the config.js file with yo
 ```
 
 ###Contributors
-. [Kifah Daher](https://github.com/KifahDaher)
-. [Donald Derek](https://github.com/DonaldDerek)
++ [Kifah Daher](https://github.com/KifahDaher)
++ [Donald Derek](https://github.com/DonaldDerek)
 
 ### License
 (The MIT License)
